@@ -1,4 +1,4 @@
-Shark Attack Dashboard
+**Shark Attack Dashboard**
 Ovo je interaktivna nadzorna ploča (dashboard) za analizu napada morskih pasa u razdoblju od 1900. do 2018. godine. Projekt je izrađen kako bi na jednostavan i pregledan način prikazao složene skupove podataka učitane direktno iz datoteke attacks.csv.
 
 ### Napredne funkcionalnosti
