@@ -29,7 +29,8 @@ function getDecadeLabel(year) {
     return null;
 }
 
-
+// [IZVOR - LITERATURA]: PapaParse biblioteka
+//Metoda Papa.parse koristi se za klijentsko asinkrono učitavanje lokalne 'attacks.csv' datoteke, pretvaranje tekstualnih podataka u strukturirane JavaScript objekte.
 Papa.parse("attacks.csv", {
     download: true,
     header: true,
@@ -258,8 +259,12 @@ function drawLineChart(data, countries) {
         chart.data.labels = allDecades;
         chart.data.datasets = datasets;
         
+        // [IZVOR - LITERATURA]: Chart.js ažuriranje podataka (Update Pattern)
+        //Pozivanje metode .update() umjesto brisanja i ponovnog stvaranja grafa, čime se omogućuju glatke animirane tranzicije između promjena odabira i podataka.
         chart.update(isAnimating ? 'none' : 'active'); 
     } else {
+        // [IZVOR - LITERATURA]: Chart.js Line Chart
+        //Inicijalizacija novog linijskog grafa za vizualnu usporedbu frekvencije napada za do tri odabrane države kroz desetljeća.
         charts['lineChart'] = new Chart(document.getElementById('lineChart'), {
             type: 'line',
             data: { labels: allDecades, datasets: datasets },
@@ -337,6 +342,8 @@ function drawPieChart(data) {
             wrapper.appendChild(canvas);
         }
 
+        // [IZVOR - LITERATURA]: Chart.js Doughnut Chart
+        //Inicijalizacija prstenastog grafa za prikaz statističkog udjela fatalnih u odnosu na nefatalne napade unutar odabranog vremenskog okvira.
         charts['pieChart'] = new Chart(canvas, {
             type: 'doughnut',
             data: {
@@ -386,6 +393,8 @@ function drawDemographicsChart(data) {
         chart.data.datasets[1].data = femaleCounts;
         chart.update('active'); 
     } else {
+        // [IZVOR - LITERATURA]: Chart.js Bar Chart
+        //Inicijalizacija stupčastog grafa za prikaz demografske distribucije žrtava grupiranih po dobi i odvojenih po spolu.
         charts['demographicsChart'] = new Chart(document.getElementById('demographicsChart'), {
             type: 'bar',
             data: {
@@ -429,6 +438,8 @@ function drawMap(data) {
         }
     }];
 
+    // [IZVOR - LITERATURA]: Plotly.js kloropletna karta
+    //Funkcija Plotly.newPlot() iscrtava kartu na temelju niza imena država i zbroja napada
     Plotly.newPlot('mapDiv', plotData, {
         geo: { 
             bgcolor: 'rgba(0,0,0,0)', 
